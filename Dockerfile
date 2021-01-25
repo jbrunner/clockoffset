@@ -7,6 +7,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o clockoffset .
 
 FROM alpine:latest  
 RUN apk --no-cache add ca-certificates
-WORKDIR /
+WORKDIR /bin
 COPY --from=0 /go/src/github.com/jbrunner/clockoffset/clockoffset .
-ENTRYPOINT ["./clockoffset"] 
+ENTRYPOINT ["clockoffset"]
