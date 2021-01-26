@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/beevik/ntp"
 )
@@ -33,6 +34,11 @@ func main() {
 		"limit",
 		0,
 		"exit(2) if offset diff is greather than <n> ms",
+	)
+	sleep := flag.Int(
+		"sleep",
+		0,
+		"sleep for <n> ms if the limit was exceeded",
 	)
 
 	flag.Parse()
@@ -67,6 +73,9 @@ func main() {
 		ms = -ms
 	}
 	if *limit > 0 && ms > *limit {
+		if *sleep > 0 {
+			time.Sleep(time.Duration(*sleep) * time.Millisecond)
+		}
 		os.Exit(2)
 	}
 }

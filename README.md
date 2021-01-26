@@ -18,6 +18,8 @@ Useful for initContainers when accurate time is required (e.g. at minikube, when
           ntp server hostname
     -quiet
           suppress output to standard output
+    -sleep int
+          sleep for <n> ms if the limit was exceeded
 
 ## Docker example
 
